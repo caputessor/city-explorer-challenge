@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllCities } from '../api/CityService';
+import { createCity, getAllCities } from '../api/CityService';
 import { City } from '../types/CityTypes';
 import CityCard from './CityCard';
 import AddCityButton from './AddCity/AddCityButton';
@@ -7,19 +7,24 @@ import AddCityForm from './AddCity/AddCityForm';
 
 const Home = () => {
   const [cities, setCities] = useState<City[]>([]);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState<boolean>(false);
 
   useEffect(() => {
     getAllCities()
       .then(response => {
         setCities(response.data);
       })
-  }, [])
+  }, [cities])
 
   const displayForm = (formDisplayed: boolean) => {
     console.log('formDisplayed, ', formDisplayed)
     setShowForm(formDisplayed);
-  
+  }
+
+  const addNewCity = (newCity: City) => {
+    createCity(newCity)
+    .then(response => console.log('RESPONSE CREATE', response))
+    .catch(err => console.log('error', err));
   }
 
   return (
@@ -36,7 +41,7 @@ const Home = () => {
 
       <AddCityButton displayForm={displayForm} isFormDisplayed={showForm} />
 
-      {showForm && <AddCityForm />}
+      {showForm && <AddCityForm addNewCity={addNewCity} />}
     </div>
   )
 }
