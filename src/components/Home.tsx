@@ -8,13 +8,12 @@ import AddCityForm from './AddCity/AddCityForm';
 const Home = () => {
   const [cities, setCities] = useState<City[]>([]);
   const [showForm, setShowForm] = useState<boolean>(false);
-
   useEffect(() => {
     getAllCities()
       .then(response => {
         setCities(response.data);
       })
-  }, [cities])
+  }, [cities.length])
 
   const displayForm = (formDisplayed: boolean) => {
     console.log('formDisplayed, ', formDisplayed)
@@ -22,14 +21,20 @@ const Home = () => {
   }
 
   const addNewCity = (newCity: City) => {
+    
     createCity(newCity)
-    .then(response => console.log('RESPONSE CREATE', response))
+    .then(response => {
+      setCities([...cities, newCity]);
+    })
     .catch(err => console.log('error', err));
   }
 
   const deleteCity = (cityId: number) => {
+    const fiteredCities = [...cities].filter(city => city.id !== cityId);
     removeCity(cityId)
-    .then(response => console.log('RESPONSE DELETE', response))
+    .then(response => {
+      setCities(fiteredCities);
+    })
     .catch(err => console.log('error', err));
   }
 

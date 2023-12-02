@@ -2,7 +2,7 @@
 
 ## Description 
 
-WIP
+The City Explorer app enables users to list, create, update, and delete cities seamlessly through API integration.
 
 ## Technologies Used
 
