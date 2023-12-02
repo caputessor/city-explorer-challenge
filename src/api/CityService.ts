@@ -32,7 +32,7 @@ export const updateCity = async (id: string, body: City) => {
   return response;
 };
 
-export const removeCity = async (id: string) => {
+export const removeCity = async (id: number) => {
   const response: AxiosResponse = await axiosInstance.delete(`/api/v1/posts/${id}`);
   return response;
 };

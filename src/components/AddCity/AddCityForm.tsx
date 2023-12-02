@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { City } from "../../types/CityTypes";
+import { v4 as uuidv4 } from 'uuid';
 
 type AddCityFormProps = {
   addNewCity: (newCity: City) => void;
 }
 const AddCityForm = ({ addNewCity }: AddCityFormProps) => {
-  const [newCity, setNewCity] = useState<City>({ title: '', content: '', image_url: '', lat: 'x', long: 'y' });
+  const [newCity, setNewCity] = useState<City>({ id: 0, title: '', content: '', image_url: '', lat: 'x', long: 'y' });
 
   const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -16,6 +17,8 @@ const AddCityForm = ({ addNewCity }: AddCityFormProps) => {
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const newCityId = uuidv4();
+    setNewCity({ ...newCity, id: Number(newCityId)});
     addNewCity(newCity);
   }
 
