@@ -31,4 +31,15 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Run the API with Docker
 
-WIP
+The server listens on port 3000.
+API URL: http://localhost:3000/api/v1/posts
+
+### Setup Docker
+
+- Pull image: `docker pull wefoxgroup/wg-web-challenge:latest`
+- Start the server API: `docker run --rm -p 3000:3000 wefoxgroup/wg-web-challenge`
+
+### Docker compose
+
+- Build image and service: `docker-compose up --no-start`
+- Start the server API: `docker-compose up`
