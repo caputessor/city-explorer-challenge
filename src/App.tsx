@@ -1,8 +1,6 @@
-import React from 'react';
-
 const App = () => {
   return (
-    <div>
+    <div role='main'>
       <h1>Home</h1>
     </div>
   );
