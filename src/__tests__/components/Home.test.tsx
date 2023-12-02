@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Home from '../../components/Home';
 
 it('should display a title', () => {
@@ -12,8 +12,6 @@ it('should display a title', () => {
 it('should display the list of cities from API', () => {
   const { getByTestId } = render(<Home />);
  
-  waitFor(() => {
-    const listOfCities = getByTestId('cities-list');
-    expect(listOfCities).toBeInTheDocument();
-  })
+  const listOfCities = getByTestId('cities-list');
+  expect(listOfCities).toBeInTheDocument();
 })

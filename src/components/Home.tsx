@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getAllCities } from '../api/CityService';
+import CityCard from './CityCard';
 
-type City = {
+export type City = {
   id?: number;
   title: string;
   content: string;
@@ -20,16 +21,16 @@ const Home = () => {
       .then(response => {
         setCities(response.data);
       })
-  })
+  }, [])
 
   return (
     <div role="main">
-      <h1 role="heading">List of cities</h1>
-      
+      <h2 className="text-4xl font-extrabold dark:text-white" role="heading">List of cities</h2>
+
       {cities && (
         <ul data-testid="cities-list">
-          {cities.map((city: City) => (
-            <li>{city.title}<br />{city.content}<br /><img src={city.image_url} alt="city picture" /></li>
+          {cities.map((city: City, index: number) => (
+            <CityCard city={city} key={index} />
           ))}
         </ul>
       )}
