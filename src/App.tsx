@@ -1,17 +1,9 @@
-import { useEffect } from "react";
-import { getAllCities } from "./api/CityService";
+import Home from "./components/Home";
 
 const App = () => {
-  useEffect(() => {
-    getAllCities()
-      .then(response => {
-        console.log('RESPONSE', response);
-      })
-  })
-
   return (
-    <div role='main'>
-      <h1>Home</h1>
+    <div role="application">
+      <Home />
     </div>
   );
 }

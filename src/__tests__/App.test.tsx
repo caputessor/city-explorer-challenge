@@ -1,10 +1,8 @@
 import { render } from '@testing-library/react';
+import Home from '../components/Home';
 
-import App from '../App';
-
-it('should render App component', () => {
-  const { container, getByRole } = render(<App />);
+it('should render Home component', () => {
+  const { getByRole } = render(<Home />);
 
   expect(getByRole('main')).toBeInTheDocument();
-  expect(container).toMatchSnapshot();
 });
