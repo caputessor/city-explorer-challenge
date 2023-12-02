@@ -11,7 +11,7 @@ const mockCity = {
 } 
 
 it('should render content from props', () => {
-  const { getByTestId } = render(<CityCard city={mockCity} deleteCity={jest.fn()} />);
+  const { getByTestId } = render(<CityCard city={mockCity} deleteCity={jest.fn()} editCity={jest.fn()} />);
 
   const cityTitle = getByTestId('city-title');
   const cityDescription = getByTestId('city-description');

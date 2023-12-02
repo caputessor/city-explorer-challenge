@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 type AddCityFormProps = {
   addNewCity: (newCity: City) => void;
 }
+
 const AddCityForm = ({ addNewCity }: AddCityFormProps) => {
   const [newCity, setNewCity] = useState<City>({ id: 0, title: '', content: '', image_url: '', lat: 'x', long: 'y' });
 

@@ -27,7 +27,7 @@ export const createCity = async (body: City) => {
   return response;
 };
 
-export const updateCity = async (id: string, body: City) => {
+export const updateCity = async (id: number, body: City) => {
   const response: AxiosResponse = await axiosInstance.put(`/api/v1/posts/${id}`, body);
   return response;
 };

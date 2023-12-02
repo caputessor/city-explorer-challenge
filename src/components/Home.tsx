@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { createCity, getAllCities, removeCity } from '../api/CityService';
+import { createCity, getAllCities, removeCity, updateCity } from '../api/CityService';
 import { City } from '../types/CityTypes';
 import CityCard from './CityCard';
 import AddCityButton from './AddCity/AddCityButton';
@@ -16,7 +16,6 @@ const Home = () => {
   }, [cities.length])
 
   const displayForm = (formDisplayed: boolean) => {
-    console.log('formDisplayed, ', formDisplayed)
     setShowForm(formDisplayed);
   }
 
@@ -38,6 +37,14 @@ const Home = () => {
     .catch(err => console.log('error', err));
   }
 
+  const editCity = (updatedCity: City) => {
+    updateCity(updatedCity.id, updatedCity)
+    .then(response => {
+      // setCities(updatedCities);
+    })
+    .catch(err => console.log('error', err));
+  }
+
   return (
     <div role="main">
       <h2 className="text-4xl font-extrabold dark:text-white" role="heading">List of cities</h2>
@@ -45,7 +52,7 @@ const Home = () => {
       {cities && (
         <ul data-testid="cities-list">
           {cities.map((city: City, index: number) => (
-            <CityCard city={city} key={index} deleteCity={deleteCity} />
+            <CityCard city={city} key={index} deleteCity={deleteCity} editCity={editCity} />
           ))}
         </ul>
       )}
