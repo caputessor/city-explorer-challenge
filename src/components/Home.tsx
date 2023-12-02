@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react';
 import { getAllCities } from '../api/CityService';
 import { City } from '../types/CityTypes';
 import CityCard from './CityCard';
+import AddCityButton from './AddCity/AddCityButton';
+import AddCityForm from './AddCity/AddCityForm';
 
 const Home = () => {
   const [cities, setCities] = useState<City[]>([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     getAllCities()
@@ -12,6 +15,12 @@ const Home = () => {
         setCities(response.data);
       })
   }, [])
+
+  const displayForm = (formDisplayed: boolean) => {
+    console.log('formDisplayed, ', formDisplayed)
+    setShowForm(formDisplayed);
+  
+  }
 
   return (
     <div role="main">
@@ -24,6 +33,10 @@ const Home = () => {
           ))}
         </ul>
       )}
+
+      <AddCityButton displayForm={displayForm} isFormDisplayed={showForm} />
+
+      {showForm && <AddCityForm />}
     </div>
   )
 }
