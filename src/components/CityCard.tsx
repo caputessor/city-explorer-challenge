@@ -1,4 +1,4 @@
-import { City } from './Home';
+import { City } from "../types/CityTypes";
 
 type CityCardProps = {
   city: City;

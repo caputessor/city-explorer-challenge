@@ -1,17 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAllCities } from '../api/CityService';
+import { City } from '../types/CityTypes';
 import CityCard from './CityCard';
-
-export type City = {
-  id?: number;
-  title: string;
-  content: string;
-  lat: string;
-  long: string;
-  image_url: string;
-  created_at?: string;
-  updated_at?: string;
-}
 
 const Home = () => {
   const [cities, setCities] = useState<City[]>([]);
